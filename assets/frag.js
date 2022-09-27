@@ -15,9 +15,12 @@ const frag = `
       vec2 uv = v_texcoord;
       uv *= 2.0;
       uv -= 1.0;
+
+      // make mouse
+      vec2 mouse = u_mouse / u_resolution;
       
       // get angle and radius
-      float radius = length(uv);
+      float radius = length(uv) * mix(1.0, 2.0, mouse.x);
       float angle = atan(uv.y, uv.x);
       
       // get a segment
@@ -30,7 +33,8 @@ const frag = `
       } else {
           angle = 1.0 - fract(angle);
       }
-      angle += u_time;
+      angle += u_time * 0.1;
+      angle += mouse.y;
       
       // unsquash segments
       angle /= SEGMENTS;
