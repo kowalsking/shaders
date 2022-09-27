@@ -1,6 +1,6 @@
 const frag = `
   precision highp float;
-  #define SEGMENTS 12.0
+  #define SEGMENTS 32.0
   #define PI 3.141592653589
   
   uniform float u_time;
@@ -41,6 +41,7 @@ const frag = `
       angle *= PI * 2.0;
       
       vec2 point = vec2(radius * cos(angle), radius * sin(angle));
+      point *= vec2(1.0, 0.666);
       point = fract(point);
       
       vec4 color = texture2D(image, point);

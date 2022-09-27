@@ -19,4 +19,16 @@ calcSize()
 window.addEventListener('resize', calcSize.bind(this))
 
 sandbox.load(frag)
-sandbox.setUniform('image', '../assets/trails.jpg')
+
+const images = ['trails.jpg', 'flowers.jpg', 'light.jpg']
+let current = 0
+
+canvas.addEventListener('click', () => {
+  current += 1
+
+  if (current === images.length) current = 0
+  
+  sandbox.setUniform('image', `../assets/${images[current]}`)
+})
+
+sandbox.setUniform('image', `../assets/${images[current]}`)
