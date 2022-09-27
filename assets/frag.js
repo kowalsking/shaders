@@ -1,6 +1,6 @@
 const frag = `
   precision highp float;
-  #define SEGMENTS 12.0
+  #define SEGMENTS 32.0
   #define PI 3.141592653589
   
   uniform float u_time;
@@ -15,9 +15,12 @@ const frag = `
       vec2 uv = v_texcoord;
       uv *= 2.0;
       uv -= 1.0;
+
+      // make mouse
+      vec2 mouse = u_mouse / u_resolution;
       
       // get angle and radius
-      float radius = length(uv);
+      float radius = length(uv) * mix(1.0, 2.0, mouse.x);
       float angle = atan(uv.y, uv.x);
       
       // get a segment
@@ -30,13 +33,15 @@ const frag = `
       } else {
           angle = 1.0 - fract(angle);
       }
-      angle += u_time;
+      angle += u_time * 0.1;
+      angle += mouse.y;
       
       // unsquash segments
       angle /= SEGMENTS;
       angle *= PI * 2.0;
       
       vec2 point = vec2(radius * cos(angle), radius * sin(angle));
+      point *= vec2(1.0, 0.666);
       point = fract(point);
       
       vec4 color = texture2D(image, point);
