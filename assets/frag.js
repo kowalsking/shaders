@@ -1,6 +1,6 @@
 const frag = `
   precision highp float;
-  #define SEGMENTS 32.0
+  #define SEGMENTS 12.0;
   #define PI 3.141592653589
   
   uniform float u_time;
