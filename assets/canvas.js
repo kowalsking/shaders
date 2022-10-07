@@ -1,12 +1,14 @@
-const canvas = document.querySelector('div.canvas-holder canvas')
+const canvas = document.createElement("canvas")
 const sandbox = new GlslCanvas(canvas)
 
-const calcSize = function() {
-  let ww = window.innerWidth
-  let wh = window.innerHeight
-  let dpi = window.devicePixelRatio
+document.body.append(canvas)
 
-  let s = Math.max(ww + 200, wh)
+const sizer = () => {
+  const ww = window.innerWidth
+  const wh = window.innerHeight
+  const dpi = window.devicePixelRatio
+
+  const s = Math.max(ww, wh)
 
   canvas.width = s * dpi
   canvas.height = s * dpi
@@ -14,21 +16,8 @@ const calcSize = function() {
   canvas.style.height = s + 'px'
 }
 
-calcSize()
+sizer()
 
-window.addEventListener('resize', calcSize.bind(this))
+window.addEventListener('resize', sizer)
 
 sandbox.load(frag)
-
-const images = ['trails.jpg', 'flowers.jpg', 'light.jpg']
-let current = 0
-
-canvas.addEventListener('click', () => {
-  current += 1
-
-  if (current === images.length) current = 0
-  
-  sandbox.setUniform('image', `../assets/${images[current]}`)
-})
-
-sandbox.setUniform('image', `../assets/${images[current]}`)
