@@ -78,3 +78,14 @@ a:before {
 a:hover:before {
   background-color: transparent;
 }
+
+canvas {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vmax;
+  height: 100vmax;
+  pointer-events: none;
+  z-index: -1;
+}
