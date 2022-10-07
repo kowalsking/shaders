@@ -4,12 +4,10 @@ precision highp float;
 #endif
 
 uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
 
-uniform sampler2D image;
-
-vec4 v_position;
-vec3 v_normal;
-vec2 v_texcoord;
+varying vec2 v_texcoord;
 
 #define NUM_OCTAVES 5
 
