@@ -21,3 +21,4 @@ sizer()
 window.addEventListener('resize', sizer)
 
 sandbox.load(frag)
+sandbox.setUniform('seed'. Math.random())

@@ -6,6 +6,7 @@ precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
+uniform float seed;
 
 varying vec2 v_texcoord;
 
@@ -21,7 +22,7 @@ void main(void)
     float strength = smoothstep(0.5, 0.0, dist);
     
     // where does the hue start
-    float hue = u_time * 0.02 + rand(vec2(0.0, 0.0));
+    float hue = u_time * 0.02 + seed;
     
     // conver two hsv colors
     vec3 hsv1 = vec3(hue, 0.9, 0.85);
